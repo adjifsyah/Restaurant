@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H1715" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RestaurantData" representedClassName="RestaurantData" syncable="YES" codeGenerationType="class">
+        <attribute name="descOfRestaurant" optional="YES" attributeType="String"/>
+        <attribute name="favoriteMenu" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="nameOfRestaurant" optional="YES" attributeType="String"/>
+        <attribute name="ratingRestaurant" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="videoURL" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="RestaurantData" positionX="-63" positionY="-18" width="128" height="133"/>
+    </elements>
 </model>
