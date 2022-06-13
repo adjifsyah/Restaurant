@@ -34,6 +34,7 @@ class RSTImageViewController: UIViewController {
     var urlUser: URL?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("is image view will appear", urlUser)
         validateUserPick()
     }
     override func viewDidLoad() {
@@ -56,9 +57,9 @@ class RSTImageViewController: UIViewController {
     
     func setupNavBar() {
         let uploadItem = UIBarButtonItem(title: "Upload", style: .done, target: self, action: #selector(uploadImage))
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
+//        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(deleteData))
         navigationItem.rightBarButtonItem = uploadItem
-        navigationItem.leftBarButtonItem = cancelItem
+//        navigationItem.leftBarButtonItem = cancelItem
     }
     
     @objc func uploadImage() {
@@ -84,7 +85,7 @@ class RSTImageViewController: UIViewController {
             print("TRUE")
         } else {
             imageView.contentMode = .scaleAspectFill
-            print("FALSE")
+            imageView.sd_setImage(with: urlUser, placeholderImage: UIImage(systemName: "photo"))
         }
     }
     

@@ -3,6 +3,5 @@
 
 target 'Restaurant' do
 use_frameworks!
-    pod 'FirebaseFirestore'
     pod 'SDWebImage'
 end

@@ -86,7 +86,7 @@ class RSTFormViewController: UIViewController {
         var imageSV = UIStackView(arrangedSubviews: [addVideoView, videlLabelBTN])
         imageSV.axis = .vertical
         imageSV.spacing = 4
-//        imageSV.backgroundColor = .lightGray
+        //        imageSV.backgroundColor = .lightGray
         return imageSV
     }()
     
@@ -94,7 +94,7 @@ class RSTFormViewController: UIViewController {
         var imageSV = UIStackView(arrangedSubviews: [addImageView, imageLabelBTN])
         imageSV.axis = .vertical
         imageSV.spacing = 4
-//        imageSV.backgroundColor = .lightGray
+        //        imageSV.backgroundColor = .lightGray
         return imageSV
     }()
     
@@ -113,51 +113,33 @@ class RSTFormViewController: UIViewController {
         return formStackView
     }()
     
-    
+    var localStorage: RSTEntity = .shared
     var imageUrl: URL?
     var videoUrl: URL?
-
-    deinit {
-        print("DEINIT")
-    }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("viewWillTransition")
-        validateMedia()
-    }
-    override func endAppearanceTransition() {
-        print("endAppearanceTransition")
-        if isBeingDismissed {
-            print("Dismiss")
-        }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewDidDisappear")
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         validateMedia()
-        print("viewWillAppear")
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear")
+        validateForm()
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         view.backgroundColor = .secondarySystemBackground
         
         addSubview()
+        delegate()
         setupNavigation()
         validateMedia()
         setupConstraint()
         
+    }
+    
+    func delegate() {
+        nameTextField.formTextField.delegate = self
+        ratingTextField.formTextField.delegate = self
+        descriptionTextField.formTextField.delegate = self
+        menuFavoriteTextField.formTextField.delegate = self
     }
     
     func addSubview() {
@@ -173,10 +155,7 @@ class RSTFormViewController: UIViewController {
     private func setupNavigation() {
         title = "Add Restaurant"
         let saveButtonView = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveAction))
-//        let cancelButtonView = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
-        
         navigationItem.rightBarButtonItem = saveButtonView
-//        navigationItem.leftBarButtonItem = cancelButtonView
     }
     
     @objc private func onImageViewTapped(_ gesture: UITapGestureRecognizer) {
@@ -193,7 +172,6 @@ class RSTFormViewController: UIViewController {
         let vc = RSTVideoViewController()
         vc.delegate = self
         vc.urlUserPickedVideo = videoUrl
-        print(videoUrl)
         vc.view.backgroundColor = .white
         vc.title = "Video"
         let nav = UINavigationController(rootViewController: vc)
@@ -212,7 +190,8 @@ class RSTFormViewController: UIViewController {
         
         let entity = NSEntityDescription.entity(forEntityName: "RestaurantData", in: manageContext)
         let newRestaurant = NSManagedObject(entity: entity ?? NSEntityDescription(), insertInto: manageContext)
-        guard let imageURL = imageUrl?.absoluteString, let videoURL = videoUrl?.absoluteString else { return }
+        let imageURL = imageUrl?.absoluteString
+        let videoURL = videoUrl?.absoluteString
         newRestaurant.setValue(nameOfRestaurant, forKey: "nameOfRestaurant")
         newRestaurant.setValue(ratingRestaurant, forKey: "ratingRestaurant")
         newRestaurant.setValue(descOfRestaurant, forKey: "descOfRestaurant")
@@ -226,21 +205,23 @@ class RSTFormViewController: UIViewController {
         } catch {
             print("Error Saving")
         }
+        
+        navigationController?.popViewController(animated: true)
     }
     
-    @objc private func cancelAction() {
+    @objc private func deleteData() {
         dismiss(animated: true, completion: nil)
     }
     
-    func videoSnapshot(filePathLocal: String) -> UIImage? {
-
-        let vidURL = URL(fileURLWithPath:filePathLocal as String)
-        let asset = AVURLAsset(url: vidURL)
+    func videoSnapshot(filePathLocal: URL) -> UIImage? {
+        
+        
+        let asset = AVURLAsset(url: filePathLocal)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
-
+        
         let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
-
+        
         do {
             let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
             return UIImage(cgImage: imageRef)
@@ -254,10 +235,10 @@ class RSTFormViewController: UIViewController {
     
     private func validateMedia() {
         print("VALIDATE MEDIA FORM")
-        if let imageURL = imageUrl?.absoluteString {
-            addImageView.loadImage(from: imageURL)
+        if let imageURL = imageUrl {
+            addImageView.sd_setImage(with: imageURL )
             addImageView.contentMode = .scaleAspectFill
-        } else if let videoURL: String = videoUrl?.absoluteString {
+        } else if let videoURL = videoUrl {
             addVideoView.image = videoSnapshot(filePathLocal: videoURL)
             addVideoView.contentMode = .scaleAspectFill
         } else {
@@ -267,6 +248,24 @@ class RSTFormViewController: UIViewController {
             addVideoView.contentMode = .scaleAspectFit
         }
         
+    }
+    
+    private func validateForm() {
+        print("validateForm is called")
+        let isNameTFEmoty = nameTextField.formTextField.text == ""
+        let isRatingEmpty = ratingTextField.formTextField.text == ""
+        let isDescriptionEmpty = descriptionTextField.formTextField.text == ""
+        let isFaveoriteEmpty = menuFavoriteTextField.formTextField.text == ""
+        
+        if isNameTFEmoty || isRatingEmpty || isDescriptionEmpty || isFaveoriteEmpty {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.rightBarButtonItem?.tintColor = .gray
+            print("TRUE")
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            navigationItem.rightBarButtonItem?.tintColor = .systemBlue
+            print("FALSE")
+        }
     }
     
     private func setupConstraint() {
@@ -293,6 +292,18 @@ class RSTFormViewController: UIViewController {
     
 }
 
+extension RSTFormViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        print(textField.text)
+        validateForm()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
+}
+
 extension RSTFormViewController: RSTImageDelegate {
     func passImage(url: URL) {
         self.imageUrl = url
@@ -305,3 +316,4 @@ extension RSTFormViewController: RSTVideoDelegate {
         self.videoUrl = url
     }
 }
+

@@ -11,6 +11,10 @@
 		0A044D762850740C00C2DDD3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A044D752850740C00C2DDD3 /* UIImage+Extension.swift */; };
 		0A044D7C285078E800C2DDD3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A044D7B285078E800C2DDD3 /* UIImageView+Extension.swift */; };
 		0A044D7F28508D2400C2DDD3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A044D7E28508D2400C2DDD3 /* String+Extension.swift */; };
+		0A7824CB2852D794005B3CB8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7824CA2852D794005B3CB8 /* DetailViewController.swift */; };
+		0A7824D22852EEC5005B3CB8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7824D12852EEC5005B3CB8 /* LoginViewController.swift */; };
+		0A7824DA2852EF70005B3CB8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7824D92852EF70005B3CB8 /* SignUpViewController.swift */; };
+		0A7824FB28530333005B3CB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7824FA28530333005B3CB8 /* User.swift */; };
 		0A8DE8212849C8D600D873A5 /* RSTHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8DE8202849C8D600D873A5 /* RSTHomeTableViewController.swift */; };
 		0A9652BB284B1F7B001D67FA /* RSTFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9652BA284B1F7B001D67FA /* RSTFormViewController.swift */; };
 		0A9652DF284B584C001D67FA /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9652DE284B584C001D67FA /* FormTextField.swift */; };
@@ -24,6 +28,7 @@
 		0ACFA712284DA9BA00BD9564 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACFA711284DA9BA00BD9564 /* Restaurant.swift */; };
 		0ACFA715284DAB2000BD9564 /* RSTListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACFA714284DAB2000BD9564 /* RSTListTableViewCell.swift */; };
 		0ACFA71E284E5DA900BD9564 /* RSTVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACFA71D284E5DA900BD9564 /* RSTVideoViewController.swift */; };
+		0AF055702851E3F200D16B5B /* RSTEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0556F2851E3F200D16B5B /* RSTEntity.swift */; };
 		7D3436D3F304FF60B351A109 /* Pods_Restaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E881C23A10C4BDBE5B0CC2DD /* Pods_Restaurant.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +37,10 @@
 		0A044D752850740C00C2DDD3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0A044D7B285078E800C2DDD3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0A044D7E28508D2400C2DDD3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		0A7824CA2852D794005B3CB8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0A7824D12852EEC5005B3CB8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A7824D92852EF70005B3CB8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0A7824FA28530333005B3CB8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A8DE8202849C8D600D873A5 /* RSTHomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSTHomeTableViewController.swift; sourceTree = "<group>"; };
 		0A9652BA284B1F7B001D67FA /* RSTFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSTFormViewController.swift; sourceTree = "<group>"; };
 		0A9652DE284B584C001D67FA /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -47,6 +56,7 @@
 		0ACFA711284DA9BA00BD9564 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		0ACFA714284DAB2000BD9564 /* RSTListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSTListTableViewCell.swift; sourceTree = "<group>"; };
 		0ACFA71D284E5DA900BD9564 /* RSTVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSTVideoViewController.swift; sourceTree = "<group>"; };
+		0AF0556F2851E3F200D16B5B /* RSTEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSTEntity.swift; sourceTree = "<group>"; };
 		440F4FD924E1DD2384BC5A50 /* Pods-Restaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurant.debug.xcconfig"; path = "Target Support Files/Pods-Restaurant/Pods-Restaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		E881C23A10C4BDBE5B0CC2DD /* Pods_Restaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Restaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8250F538161D5D34A4D939 /* Pods-Restaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurant.release.xcconfig"; path = "Target Support Files/Pods-Restaurant/Pods-Restaurant.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +74,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A7824CF2852EEA8005B3CB8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0A7824D12852EEC5005B3CB8 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0A7824D72852EF62005B3CB8 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				0A7824D92852EF70005B3CB8 /* SignUpViewController.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		0A7824F12852FC99005B3CB8 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				0A7824F928530325005B3CB8 /* Entity */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		0A7824F928530325005B3CB8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0A7824FA28530333005B3CB8 /* User.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		0A8DE8232849C90900D873A5 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +130,11 @@
 		0A8DE8262849C92700D873A5 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				0A9652DD284B5815001D67FA /* Components */,
+				0A7824D72852EF62005B3CB8 /* Signup */,
+				0A7824CF2852EEA8005B3CB8 /* Login */,
 				0A8DE82C2849C9DA00D873A5 /* Home */,
+				0A9435832852C68A00DB295E /* Detail */,
+				0A9652DD284B5815001D67FA /* Components */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -115,8 +160,9 @@
 		0A8DE8292849C98400D873A5 /* CoreDataStorage */ = {
 			isa = PBXGroup;
 			children = (
+				0A7824F12852FC99005B3CB8 /* UserDefaults */,
 				0A8DE82A2849C98B00D873A5 /* Entity */,
-				0A8DE82B2849C99000D873A5 /* Infrastrukture */,
+				0A8DE82B2849C99000D873A5 /* Infrastructure */,
 			);
 			path = CoreDataStorage;
 			sourceTree = "<group>";
@@ -124,16 +170,17 @@
 		0A8DE82A2849C98B00D873A5 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				0AF0556F2851E3F200D16B5B /* RSTEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		0A8DE82B2849C99000D873A5 /* Infrastrukture */ = {
+		0A8DE82B2849C99000D873A5 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				0A9AC5892849BA1B00FCB341 /* Restaurant.xcdatamodeld */,
 			);
-			path = Infrastrukture;
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		0A8DE82C2849C9DA00D873A5 /* Home */ = {
@@ -147,6 +194,14 @@
 				0A9AC5862849BA1B00FCB341 /* Main.storyboard */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		0A9435832852C68A00DB295E /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0A7824CA2852D794005B3CB8 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		0A9652DD284B5815001D67FA /* Components */ = {
@@ -340,14 +395,19 @@
 				0A044D3E284F561B00C2DDD3 /* RSTImageViewController.swift in Sources */,
 				0ACFA71E284E5DA900BD9564 /* RSTVideoViewController.swift in Sources */,
 				0A9652DF284B584C001D67FA /* FormTextField.swift in Sources */,
+				0A7824DA2852EF70005B3CB8 /* SignUpViewController.swift in Sources */,
 				0A9AC58B2849BA1B00FCB341 /* Restaurant.xcdatamodeld in Sources */,
 				0A044D7F28508D2400C2DDD3 /* String+Extension.swift in Sources */,
+				0A7824CB2852D794005B3CB8 /* DetailViewController.swift in Sources */,
 				0A044D7C285078E800C2DDD3 /* UIImageView+Extension.swift in Sources */,
 				0A9652BB284B1F7B001D67FA /* RSTFormViewController.swift in Sources */,
 				0ACFA712284DA9BA00BD9564 /* Restaurant.swift in Sources */,
 				0A9AC5812849BA1B00FCB341 /* AppDelegate.swift in Sources */,
+				0A7824D22852EEC5005B3CB8 /* LoginViewController.swift in Sources */,
 				0A044D762850740C00C2DDD3 /* UIImage+Extension.swift in Sources */,
+				0AF055702851E3F200D16B5B /* RSTEntity.swift in Sources */,
 				0A9AC5832849BA1B00FCB341 /* SceneDelegate.swift in Sources */,
+				0A7824FB28530333005B3CB8 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

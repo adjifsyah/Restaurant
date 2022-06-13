@@ -15,20 +15,28 @@ protocol RSTHomeDelegate {
 
 class RSTHomeTableViewController: UITableViewController {
     var restaurantDisplayed: [Restaurant] = []
+    var localStorage: RSTEntity = .shared
     
     override func viewWillAppear(_ animated: Bool) {
-        print("MAIN viewWillAppear")
+        super.viewWillAppear(animated)
+        configureView()
+        fetchCoreData()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        registerCell()
+        addDataRestaurant()
+        
+    }
+    
+    func fetchCoreData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RestaurantData")
-        request.returnsObjectsAsFaults = false
         do {
-//            guard let result = try managedContext.fetch(request) as? [NSManagedObject] else { return }
-//            for item in result {
-//                managedContext.delete(item)
-//            }
-//           try managedContext.save()
             guard let result = try managedContext.fetch(request) as? [NSManagedObject] else { return }
+            restaurantDisplayed = []
             for data in result {
                 let nameRestaurant    = data.value(forKey: "nameOfRestaurant") as? String
                 let rating            = data.value(forKey: "ratingRestaurant") as? Float
@@ -36,7 +44,7 @@ class RSTHomeTableViewController: UITableViewController {
                 let favorite          = data.value(forKey: "favoriteMenu") as? String
                 let imageURL          = data.value(forKey: "imageURL") as? String
                 let videoURL          = data.value(forKey: "videoURL") as? String
-
+                
                 let restaurant = Restaurant(nameOfRestaurant: nameRestaurant,
                                             rating: rating,
                                             descRestaurant: descOfRestaurant,
@@ -48,17 +56,13 @@ class RSTHomeTableViewController: UITableViewController {
                 tableView.reloadData()
             }
         } catch {
-            print("Error Fetch")
+            
         }
-        print("END MAIN viewWillAppear")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("data", restaurantDisplayed)
-        registerCell()
-        addDataRestaurant()
-        
+    private func configureView() {
+        title = "Restaurant"
+        view.backgroundColor = .secondarySystemBackground
     }
     
     func registerCell() {
@@ -91,15 +95,30 @@ class RSTHomeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RSTListTableViewCell.identifier,
-                                                       for: indexPath) as? RSTListTableViewCell
-        else { return UITableViewCell() }
-        
+                                                       for: indexPath) as? RSTListTableViewCell else
+        { return UITableViewCell() }
         let row = indexPath.row
-        let restaurant = restaurantDisplayed[row]
+        let data = restaurantDisplayed[row]
         
-        cell.containerView.backgroundColor = .gray
-        cell.imageView?.sd_setImage(with: URL(string: restaurant.imageURL ?? ""), placeholderImage: UIImage(systemName: "photo"))
+        cell.imageRestaurant.sd_setImage(with: URL(string: data.imageURL ?? ""), placeholderImage: UIImage(systemName: "photo"))
+        cell.nameOfRestaurant.text = data.nameOfRestaurant
+        cell.ratingOfRestaurant.text = String(describing: data.rating ?? 0.0)
         cell.imageRestaurant.backgroundColor = .lightGray
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let row = indexPath.row
+        let data = restaurantDisplayed[row]
+        let vc = DetailViewController()
+        let imageURL = URL(string: data.imageURL ?? "")
+        let placeholderImage = UIImage(systemName: "photo")
+        vc.view.backgroundColor = .white
+        vc.imageRestaurant.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
+        vc.nameOfRestaurant.text = data.nameOfRestaurant
+        vc.ratingOfRestaurant.text = String(describing: data.rating ?? 0.0)
+        vc.descriptionOfRestaurant.text = data.descRestaurant
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -61,9 +61,9 @@ class RSTVideoViewController: UIViewController {
     
     func setupNavBar() {
         let uploadItem = UIBarButtonItem(title: "Upload", style: .done, target: self, action: #selector(uploadVideo))
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
+//        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(deleteData))
         navigationItem.rightBarButtonItem = uploadItem
-        navigationItem.leftBarButtonItem = cancelItem
+//        navigationItem.leftBarButtonItem = cancelItem
     }
     
     @objc func uploadVideo() {
@@ -80,7 +80,6 @@ class RSTVideoViewController: UIViewController {
     
     @objc func onVideoViewTapped() {
         videoPicker.sourceType = .photoLibrary
-        //        videoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
         videoPicker.mediaTypes = ["public.movie"]
         videoPicker.videoQuality = .typeMedium
         videoPicker.videoExportPreset = AVAssetExportPreset960x540
@@ -96,29 +95,28 @@ class RSTVideoViewController: UIViewController {
             videoIconDefault.image = UIImage(systemName: "video")
             videoIconDefault.contentMode = .scaleAspectFit
             videoIconDefault.isHidden = false
-
         }
         
     }
     
     func setupConstraint() {
-        videoContainer.translatesAutoresizingMaskIntoConstraints = false
-        videoIconDefault.translatesAutoresizingMaskIntoConstraints = false
-        playButton.translatesAutoresizingMaskIntoConstraints = false
+        videoContainer.translatesAutoresizingMaskIntoConstraints    = false
+        videoIconDefault.translatesAutoresizingMaskIntoConstraints  = false
+        playButton.translatesAutoresizingMaskIntoConstraints        = false
         //        let ratio: CGFloat = CGFloat(16/9)
-        videoContainer.heightAnchor.constraint(equalToConstant: 180).isActive = true
-        videoContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        videoContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        videoContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        videoContainer.heightAnchor.constraint(equalToConstant: 180).isActive                       = true
+        videoContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive   = true
+        videoContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive               = true
+        videoContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive             = true
         
-        videoIconDefault.topAnchor.constraint(equalTo: videoContainer.topAnchor).isActive = true
-        videoIconDefault.leadingAnchor.constraint(equalTo: videoContainer.leadingAnchor).isActive = true
+        videoIconDefault.topAnchor.constraint(equalTo: videoContainer.topAnchor).isActive           = true
+        videoIconDefault.leadingAnchor.constraint(equalTo: videoContainer.leadingAnchor).isActive   = true
         videoIconDefault.trailingAnchor.constraint(equalTo: videoContainer.trailingAnchor).isActive = true
-        videoIconDefault.bottomAnchor.constraint(equalTo: videoContainer.bottomAnchor).isActive = true
+        videoIconDefault.bottomAnchor.constraint(equalTo: videoContainer.bottomAnchor).isActive     = true
 //        videoIconDefault.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         playButton.topAnchor.constraint(equalTo: videoContainer.bottomAnchor, constant: 24).isActive = true
-        playButton.centerXAnchor.constraint(equalTo: videoContainer.centerXAnchor).isActive = true
+        playButton.centerXAnchor.constraint(equalTo: videoContainer.centerXAnchor).isActive          = true
     }
 }
 
@@ -126,6 +124,8 @@ extension RSTVideoViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
         let userPickedVideo =  info[UIImagePickerController.InfoKey.mediaURL] as? URL
+        let userVideoData   =  info[UIImagePickerController.InfoKey.mediaURL] as? Data
+        print(userVideoData)
         validateVideo()
         self.urlUserPickedVideo = userPickedVideo
         
